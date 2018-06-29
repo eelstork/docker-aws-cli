@@ -16,7 +16,12 @@ ENV LC_ALL en_US.UTF-8
 # Needed for AWS CLIs to handle UTF-8 correctly:
 ENV PYTHONIOENCODING=UTF-8
 
-# AWS EB CLI with Python 3
+# Install AWS EB CLI with Python 3
 RUN apt-get install -y python3-pip
 RUN pip3 install awsebcli --upgrade --user
 
+# Update path
+ENV PATH "$PATH:/root/.local/bin/"
+
+# EB version check
+RUN echo $PATH && eb --version
